@@ -10,6 +10,8 @@
 
 @interface View : UIView
 @property (nonatomic) CGFloat rotation;
+@property (nonatomic) CGFloat chordPercent;
+@property (nonatomic) double radiusPercent;
 @property (nonatomic) CGPoint position;
 @property (nonatomic) CGPoint position2;
 @end

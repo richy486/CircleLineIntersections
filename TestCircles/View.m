@@ -19,6 +19,8 @@
         
         self.position = CGPointMake(420.0, 100);
         self.position2 = CGPointMake(400.0, 400);
+        self.chordPercent = 0.5;
+        self.radiusPercent = 0.5;
     }
     return self;
 }
@@ -28,6 +30,7 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    [super drawRect:rect];
     
     CGFloat colourYellow[4] = {1.0f, 1.0f, 0.0f, 1.0f};
     CGFloat colourYellow2[4] = {0.75f, 1.0f, 0.0f, 1.0f};
@@ -36,10 +39,10 @@
     CGFloat colourRed[4] = {1.0f, 0.0f, 0.0f, 1.0f};
     CGFloat colourWhite[4] = {1.0f, 1.0f, 1.0f, 1.0f};
     
-    double radius = 150.0;
+    double radius = self.radiusPercent * 300.0;
     CGFloat centreX = 400.0;
     CGFloat centreY = 400.0;
-    CGFloat chord = 100.0;
+    CGFloat chord = self.chordPercent * (2*radius);
     CGFloat angle = -self.rotation;
     
     CGPoint pointA = self.position;
@@ -185,7 +188,7 @@
         }
 
     }
-    NSLog(@"intersection: %d, startPointNorm %.05f, theta1: %.05f, endPointNorm %.05f, ", intersection, startPointNorm, theta1, endPointNorm);
+//    NSLog(@"intersection: %d, startPointNorm %.05f, theta1: %.05f, endPointNorm %.05f, ", intersection, startPointNorm, theta1, endPointNorm);
 
     {
         CGContextRef c = UIGraphicsGetCurrentContext();

@@ -43,7 +43,35 @@
     [panGesture2 setMaximumNumberOfTouches:2];
     [panGesture2 setMinimumNumberOfTouches:2];
     [self.view addGestureRecognizer:panGesture2];
+    
+    UISlider *sliderChord = [[UISlider alloc] initWithFrame:CGRectMake(10, 900, 400, 50)];
+    [sliderChord setBackgroundColor:[UIColor orangeColor]];
+    [sliderChord addTarget:self action:@selector(valueChanged_sliderChord:) forControlEvents:UIControlEventValueChanged];
+    [sliderChord setValue:[(View*)self.view chordPercent]];
+    [self.view addSubview:sliderChord];
+    
+    UISlider *sliderRadius = [[UISlider alloc] initWithFrame:CGRectMake(10, 950, 400, 50)];
+    [sliderRadius setBackgroundColor:[UIColor whiteColor]];
+    [sliderRadius addTarget:self action:@selector(valueChanged_sliderRadius:) forControlEvents:UIControlEventValueChanged];
+    [sliderRadius setValue:[(View*)self.view radiusPercent]];
+    [self.view addSubview:sliderRadius];
 }
+
+#pragma mark - events
+
+- (void) valueChanged_sliderChord:(UISlider*) slider
+{
+    [(View*)self.view setChordPercent:slider.value];
+    [self.view setNeedsDisplay];
+}
+
+- (void) valueChanged_sliderRadius:(UISlider*) slider
+{
+    [(View*)self.view setRadiusPercent:slider.value];
+    [self.view setNeedsDisplay];
+}
+
+#pragma mark - gestures
 
 - (void)rotateGestureAction:(UIRotationGestureRecognizer *)gestureRecognizer
 {
